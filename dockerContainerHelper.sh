@@ -9,7 +9,7 @@ function dockerExecInContainer {
 }
 
 function help {
-    printf "Usage: `container-exec bash` or `container exec 'composer install'`"
+    printf "Usage: `container-exec bash` or `container exec 'composer install'`\n"
 }
 
 
@@ -23,13 +23,13 @@ function main {
 
     # validate params
     if [ "$#" -ne 1 ]; then
-        echo "Only pass in one argument. Longer commands can be passed in within single quotes."
+        echo "Only pass in one argument. Longer commands can be passed in within single quotes.\n"
         return 1
     fi
 
     # ensure there's an actual docker-compose file to use
     if [ ! -f docker-compose.yml ]; then
-        printf "No docker-compose.yml file found in directory."
+        printf "No docker-compose.yml file found in directory.\n"
         return 1
     fi
 
