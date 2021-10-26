@@ -23,7 +23,7 @@ function main {
 
     # validate params
     if [ "$#" -ne 1 ]; then
-        echo "Only pass in one argument. Longer commands can be passed in within single quotes.\n"
+        printf "Only pass in one argument. Longer commands can be passed in within single quotes.\n"
         return 1
     fi
 
