@@ -15,6 +15,6 @@ ln -s $SOMEWHERE_IN_PATH$ container-exec
 ## Usage
 
 ```
-container exec 'composer install'
+container exec composer install
 container exec bash
 ```
