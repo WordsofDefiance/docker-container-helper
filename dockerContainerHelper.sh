@@ -12,6 +12,15 @@ function help {
     printf "Usage: `container-exec bash` or `container exec 'composer install'`\n"
 }
 
+function validateParams {
+    if [ "$#" -ne 1 ]; then
+        printf "Only pass in one argument. Longer commands can be passed in within single quotes.\n"
+        invalid='yes'
+        return 1
+    fi
+
+}
+
 
 function main {
     # help
@@ -39,5 +48,12 @@ function main {
     dockerExecInContainer $1
 }
 
-main $1
 
+validateParams
+
+# ewwwwww
+if [ "$invalid" == 'yes' ]; then
+    exit
+fi
+
+main $1
