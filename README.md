@@ -7,11 +7,11 @@ Right now it just looks for a docker-compose file with a `container_name` variab
 
 ## Installation:
 
-Create a symlink called `container-exec` somewhere in your `$PATH` linked to the `docker-container-helper.sh` file. This allows you to continue to develop with Git while maintaining the convenience of the command line executable. Plus, Zsh (I think) provides auto-complete for executables in the `$PATH`, so that's a nifty bonus of using a symlink.
+Create a symlink called `container-exec` somewhere in your `$PATH` linked to the `dockerContainerHelper.sh` file. This allows you to continue to develop with Git while maintaining the convenience of the command line executable. Plus, Zsh (I think) provides auto-complete for executables in the `$PATH`, so that's a nifty bonus of using a symlink.
 
 ```
 cd $SOMEWHERE_IN_PATH$
-ln -s $docker-container-helper.sh_LOCATION$ container-exec
+ln -s $dockerContainerHelper.sh_LOCATION$ container-exec
 ```
 
 ## Usage
