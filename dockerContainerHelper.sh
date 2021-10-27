@@ -24,7 +24,7 @@ function checkForComposeFile {
 }
 
 function help {
-    printf "Usage: 'container-exec bash' or 'container-exec composer install'\n"
+    printf "\033[38;5;86m\033[48;5;18mUsage: 'container-exec bash' or 'container-exec composer install'\033[0m"
 }
 
 function main {
@@ -37,6 +37,7 @@ function main {
         esac
     done
 
+    # ensure compose file exists in current directory
     checkForComposeFile
 
     # do the stuff
