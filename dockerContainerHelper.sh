@@ -15,24 +15,29 @@ function dockerExecInContainer {
     docker exec -it $( getContainerFromDockerCompose ) $@
 }
 
+function checkForComposeFile {
+    # ensure there's an actual docker-compose file to use
+    if [ ! -f docker-compose.yml ]; then
+        printf "\033[38;5;255m\033[48;5;160mNo docker-compose.yml file found in directory.\033[0m"
+                exit
+    fi
+}
+
 function help {
-    printf "Usage: `container-exec bash` or `container exec 'composer install'`\n"
+    printf "Usage: 'container-exec bash' or 'container-exec composer install'\n"
 }
 
 function main {
-    echo "$@"
     # help
-    while getopts "help" OPTION
-    do
-        help
-        return 0
+    while getopts ":h" option; do
+        case $option in
+            h)
+                help
+                exit;;
+        esac
     done
 
-    # ensure there's an actual docker-compose file to use
-    if [ ! -f docker-compose.yml ]; then
-        printf "No docker-compose.yml file found in directory.\n"
-        return 1
-    fi
+    checkForComposeFile
 
     # do the stuff
     dockerExecInContainer "$@"
