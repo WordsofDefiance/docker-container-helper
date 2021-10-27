@@ -29,6 +29,11 @@ function help {
 
 function main {
     # help
+    if [ "$#" -eq 0 ]; then
+        help
+        exit
+    fi
+
     while getopts ":h" option; do
         case $option in
             h)
