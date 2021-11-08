@@ -5,7 +5,7 @@ function newline {
 }
 
 function getContainerFromDockerCompose {
-    cat docker-compose.yml | grep -i container_name | awk '{print $2}'
+    grep -i container_name docker-compose.yml | awk '{print $2}'
 }
 
 function dockerExecInContainer {
