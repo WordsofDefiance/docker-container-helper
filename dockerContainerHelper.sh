@@ -9,8 +9,9 @@ function getContainerFromDockerCompose {
 }
 
 function dockerExecInContainer {
+    export vars="$@"
     printf "You passed in command \033[38;5;233m\033[48;5;50m$@\033[0m to container \033[38;5;233m\033[48;5;50m$( getContainerFromDockerCompose )\033[0m\n"
-    printf "docker exec -it $( getContainerFromDockerCompose ) $@"
+    printf "docker exec -it $( getContainerFromDockerCompose ) $vars"
     newline
     docker exec -it $( getContainerFromDockerCompose ) $@
 }
