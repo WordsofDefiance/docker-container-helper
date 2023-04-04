@@ -5,10 +5,25 @@ function newline {
 }
 
 function getContainerFromDockerCompose {
-    grep -i container_name docker-compose.yml | awk '{print $2}'
+
+    local container_name=$(grep -i container_name docker-compose.yml | awk '{print $2}')
+
+    if [[ -z "${container_name}" ]]; then
+        echo "Error: 'container_name' not found in docker-compose.yml"
+        exit 1
+    fi
+
+    echo "${container_name}"
 }
 
 function dockerExecInContainer {
+    local container_name=$(getContainerFromDockerCompose)
+
+    if ! docker ps | awk '{print $NF}' | grep -q "^${container_name}\$"; then
+        echo "Container '${container_name}' is not running!"
+        exit 1
+    fi
+
     export vars="$@"
     printf "You passed in command \033[38;5;233m\033[48;5;50m$@\033[0m to container \033[38;5;233m\033[48;5;50m$( getContainerFromDockerCompose )\033[0m\n"
     printf "docker exec -it $( getContainerFromDockerCompose ) $vars"
